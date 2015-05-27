@@ -6,7 +6,7 @@
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
     	<link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
 		<style>
-			html, body {padding: 0; margin: 0; overflow: hidden; cursor: default;}
+			html, body {padding: 0; margin: 0; overflow: hidden; cursor: default; height: 100%;}
 
 			#menuIcon {
 				position: absolute;
@@ -17,12 +17,14 @@
 			#menuContent {
 				position: absolute;
 				top:0;
-				padding-top: 50px;
-				width: 300px;
+				padding: 50px 20px 10px 20px;
+				width: 260px;
 				background: lightblue;
 				transform: translateX(-300px);
 				transition: 0.2s ease-out;
 				height: 100%;
+				overflow-x: hidden;
+				overflow-y: scroll;
 			}
 
 			#menuContent.visible {
@@ -46,8 +48,23 @@
 		</div>
 		
 		<div id="menu" ng-app="SolarSystemSoundMachine">
-			<div id="menuContent">
-				Speed: <input type="range" min="0" max="100" name="speed">	
+			<div id="menuContent" ng-controller="MenuController as menu">
+				Speed:
+				<!-- <input type="range" min="0" max="100" name="speed" ng-model="menu.params.rotationSpeed"> -->
+
+				<md-slider ng-model="menu.params.rotationSpeed" min="0" max="20"></md-slider>
+
+				<div ng-repeat="planet in menu.params.planets">
+					{{planet.name}}
+					<md-slider ng-model="planet.rotation" min="0" max="0.03" step="0.0001"></md-slider>
+					
+					<!--Note:
+					Notelength:
+					Velocity:
+					-->
+					<br />
+
+				</div>
 			</div>
 			<div id="menuIcon">X</div>
 		</div>
@@ -72,9 +89,9 @@
 
 		<script src="bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="bower_components/threejs/build/three.min.js"></script>
-		<script src="bower_components/dat-gui/build/dat.gui.min.js"></script>
 		<!-- endbuild-->
 		<!-- build:js build.js -->
+		<script src="src/appParameters.js"></script>
 		<script src="src/main.js"></script>
 		<script src="src/midi.js"></script>
 		<script src="src/app.js"></script>
