@@ -2,7 +2,7 @@ window.appParameters = {
 	rotationSpeed: 2,
 	planets: [
 		{
-			name: "Merkur",
+			name: "Mercury",
 			distanceToSun: 51,
 			radius: 2,
 			color: 0xef008f,
@@ -21,7 +21,7 @@ window.appParameters = {
 			velocity: 80
 		},
 		{
-			name: "Erde",
+			name: "Earth",
 			distanceToSun: 107,
 			radius: 3,
 			color: 0x5353f3,
