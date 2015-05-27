@@ -2,7 +2,7 @@ angular.module('SolarSystemSoundMachine', ['ngMaterial', 'ngAnimate'])
 
 	.config(function($mdThemingProvider) {
 	  $mdThemingProvider.theme('default')
-	    .primaryPalette('indigo')
+	    .primaryPalette('grey')
 	    .accentPalette('cyan');
 	})
 
@@ -23,7 +23,7 @@ angular.module('SolarSystemSoundMachine', ['ngMaterial', 'ngAnimate'])
   					'<div class="collapsable-heading"',
     					'<i class="fa fa-angle-right" ng-class="{\'fa-rotate-90\': viewModel.collapsed}"></i>',
     					'<span class="collapsable-heading-text" ng-click="toggle()">{{planet.name}}</span>',
-  						'<md-slider ng-model="planet.rotation" min="0" max="0.03" step="0.0001" class="planetSlider"></md-slider>',
+  						'<md-slider ng-model="planet.rotation" min="0" max="0.03" step="0.0001" class="planetSlider" ng-class="planet.name"></md-slider>',
   					'</div>',
   					'<div ng-class="{\'collapsed\': viewModel.collapsed}" class="collapsable-body collapsable-animate margin-top-5" ng-transclude></div>',
 					'</div>'].join(''),
@@ -43,7 +43,47 @@ angular.module('SolarSystemSoundMachine', ['ngMaterial', 'ngAnimate'])
 	        };
 	      }
 	    };
-	  });
+	})
+
+
+	.directive('parseInt', function(){
+		return {
+			restrict: 'A',
+			require: 'ngModel',
+			link: function(scope, elm, attr, ngModel){
+				ngModel.$parsers.push(function(a){
+					return parseInt(a,10);
+				});
+			}	
+		}
+	})
+
+	.run(['AppParameters', function(AppParameters){
+		var addRule = (function(style){
+		 	var sheet = document.head.appendChild(style).sheet;
+		    return function(selector, css){
+		        var propText = Object.keys(css).map(function(p){
+		            return p+":"+css[p]
+		        }).join(";");
+		        sheet.insertRule(selector + "{" + propText + "}", sheet.cssRules.length);
+		    }
+		})(document.createElement("style"));
+
+		angular.forEach(AppParameters.planets, function(planet){
+			console.log(planet.color);
+			addRule("md-slider.md-default-theme."+planet.name+" .md-thumb:after", {
+				background: '#'+planet.color.toString(16).toUpperCase(),
+				'border-color': '#'+planet.color.toString(16).toUpperCase()
+			});
+			addRule("md-slider.md-default-theme."+planet.name+" .md-track.md-track-fill", {
+  				'background-color': '#'+planet.color.toString(16).toUpperCase()
+			});
+		});
+	}])
+
+
+
+
 
 
 

@@ -36,6 +36,9 @@
 
 	//Point Light
 	var pointLight = new THREE.PointLight( 0xffffff, 0.5 );
+	pointLight.position.y = 30;
+	// pointLight.position.z = 20;
+	// pointLight.position.x = -20;
 	scene.add( pointLight );
 
 	// Background Plane
@@ -124,7 +127,7 @@
 
 	function roundComplete(planet){
 		highlightLine(planet.circle.material);
-		playNote(planet.note+(12*4), planet.velocity, planet.length);
+		playNote(planet.note+(12*(planet.octave+1)), planet.velocity, planet.noteLength);
 	}
 
 	function highlightLine(lineMaterial){

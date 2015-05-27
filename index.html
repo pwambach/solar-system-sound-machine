@@ -19,17 +19,25 @@
 				left: 0px;
 			}
 
-			#menuContent {
+
+			#menuContentScrollWrapper {
 				position: absolute;
 				top:0;
-				padding: 50px 20px 10px 20px;
-				width: 260px;
-				background: #36aaaa;
-				transform: translateX(-300px);
-				transition: 0.2s ease-out;
-				height: 100%;
-				overflow-x: hidden;
 				overflow-y: scroll;
+				height: 100%;
+				background: #36aaaa;
+				width: 300px;
+				transform: translateX(-300px);
+				transition: 0.25s ease-out;
+				overflow-x: hidden;
+			}
+
+			#menuContent {
+				padding: 50px 20px 20px 20px;
+			}
+
+			#menuContentScrollWrapper.visible {
+				transform: translateX(0px);	
 			}
 
 			.planetSlider {
@@ -38,18 +46,38 @@
 				width: 64%;
 			}
 
-			#menuContent.visible {
-				transform: translateX(0px);	
-			}
-
 			#content {
 				transform: translateX(0);
-				transition: 0.2s ease-out;
+				transition: 0.25s ease-out;
 			}
 
 			#content.menuOpen {
 				transform: translateX(100px);
 			}
+
+
+			.planetSubSettings {
+				font-size: 13px;
+				padding-left: 20px;
+				margin-bottom: 20px;
+			}
+
+			.planetSubSettings .label {
+				display: inline-block;
+				vertical-align: middle;
+				min-width: 60px;
+			}
+
+			.planetSubSettings md-slider {
+				display: inline-block;
+				vertical-align: middle;
+				width: 50%;
+			}
+
+
+
+
+
 
 			.collapsable .collapsable-heading-text {
 				font-size: 14px;
@@ -61,7 +89,7 @@
 			.collapsable .collapsable-heading {
 			    cursor: pointer;
 			}
-			.collapsable .collapsable-heading:focus {
+			.collapsable .collapsable-heading-text:focus {
 			    outline: none;
 			}
 			
@@ -85,6 +113,16 @@
 			    opacity: 1;
 			    max-height: 500px;
 			}
+
+
+			md-select-menu md-content.md-default-theme {
+				background-color: rgb(67, 211, 211);
+			}
+
+			md-select-menu.md-default-theme md-option {
+				color: #ddd;
+			}
+
 		</style>
 	</head>
 	<body>
@@ -94,22 +132,71 @@
 		</div>
 		
 		<div id="menu" ng-app="SolarSystemSoundMachine">
-			<div id="menuContent" ng-controller="MenuController as menu">
-				Universal Speed:
-				<md-slider ng-model="menu.params.rotationSpeed" min="0" max="20"></md-slider>
-				<br />
-
-				<div ng-repeat="planet in menu.params.planets" class="planetSettings">
-					<div planet-settings="planet">
-						<div>Note: C#</div>
-						<div>Velocity: <md-slider ng-model="planet.velocity" min="0" max="127"></md-slider>{{planet.velocity}}</div>
-						<div>Length: <md-slider ng-model="planet.length" min="0" max="2" step="0.2"></md-slider>{{planet.length}}</div>
-					</div>	
+			<div id="menuContentScrollWrapper">
+				<div id="menuContent" ng-controller="MenuController as menu">
+					Universal Speed:
+					<md-slider ng-model="menu.params.rotationSpeed" min="0" max="20"></md-slider>
 					<br />
+
+					<div ng-repeat="planet in menu.params.planets">
+						<div planet-settings="planet">
+							<div class="planetSubSettings">
+
+
+								<div><span class="label">Note:</span>
+									<md-select placeholder="Note" ng-model="planet.note" parse-int>
+								    	<md-option value="0">C</md-option>
+								    	<md-option value="1">C#</md-option>
+								    	<md-option value="2">D</md-option>
+								    	<md-option value="3">D#</md-option>
+								    	<md-option value="4">E</md-option>
+								    	<md-option value="5">F</md-option>
+								    	<md-option value="6">F#</md-option>
+								    	<md-option value="7">G</md-option>
+								    	<md-option value="8">G#</md-option>
+								    	<md-option value="9">A</md-option>
+								    	<md-option value="10">A#</md-option>
+								    	<md-option value="11">B</md-option>
+								  	</md-select>
+							  	</div>
+
+							  	<div><span class="label">Octave:</span>
+									<md-select placeholder="Note" ng-model="planet.octave" parse-int>
+								    	<md-option value="1">1</md-option>
+								    	<md-option value="2">2</md-option>
+								    	<md-option value="3">3</md-option>
+								    	<md-option value="4">4</md-option>
+								  	</md-select>
+							  	</div>
+
+								<div>
+									<span class="label">Velocity:</span>
+									<md-slider ng-model="planet.velocity"
+												min="0"
+												max="127"
+												ng-class="planet.name"></md-slider>
+								</div>
+								<div>
+									<span class="label">Length:</span>
+									<md-slider ng-model="planet.noteLength"
+												min="0.1"
+												max="2"
+												step="0.1"
+												ng-class="planet.name"></md-slider>
+								</div>
+							</div>
+						</div>	
+						<br />
+					</div>
 				</div>
 			</div>
 			<div id="menuIcon">X</div>
 		</div>
+
+
+
+
+
 		
 		<!-- build:js vendor.js -->
 		<script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -143,7 +230,7 @@
 		<script type="text/javascript">
 			$(document).ready( function(){
 				$('#menuIcon').click(function(){
-					$('#menuContent').toggleClass('visible');
+					$('#menuContentScrollWrapper').toggleClass('visible');
 					$('#content').toggleClass('menuOpen');
 				});
 			});
