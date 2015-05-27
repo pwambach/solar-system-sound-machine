@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>SolarSystemSoundMachine</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    	<link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+		<style>
+			html, body {padding: 0; margin: 0; overflow: hidden; cursor: default;}
+
+			#menuIcon {
+				position: absolute;
+				top: 0;
+				left: 0px;
+			}
+
+			#menuContent {
+				position: absolute;
+				top:0;
+				padding-top: 50px;
+				width: 300px;
+				background: lightblue;
+				transform: translateX(-300px);
+				transition: 0.2s ease-out;
+				height: 100%;
+			}
+
+			#menuContent.visible {
+				transform: translateX(0px);	
+			}
+
+			#content {
+				transform: translateX(0);
+				transition: 0.2s ease-out;
+			}
+
+			#content.menuOpen {
+				transform: translateX(100px);
+			}
+		</style>
+	</head>
+	<body>
+
+		<div id="content">
+			<div id="canvasContainer"></div>
+		</div>
+		
+		<div id="menu" ng-app="SolarSystemSoundMachine">
+			<div id="menuContent">
+				Speed: <input type="range" min="0" max="100" name="speed">	
+			</div>
+			<div id="menuIcon">X</div>
+		</div>
+		
+		<!-- build:js vendor.js -->
+		<script src="bower_components/angular/angular.js"></script>
+    	<script src="bower_components/angular-aria/angular-aria.js"></script>
+    	<script src="bower_components/angular-animate/angular-animate.js"></script>
+    	<script src="bower_components/angular-material/angular-material.js"></script>
+
+		<script src="bower_components/midi/inc/shim/WebAudioAPI.js" type="text/javascript"></script>
+		<script src="bower_components/midi/inc/shim/Base64.js" type="text/javascript"></script>
+		<script src="bower_components/midi/inc/shim/Base64binary.js" type="text/javascript"></script>
+		<script src="bower_components/midi/js/midi/audioDetect.js" type="text/javascript"></script>
+		<script src="bower_components/midi/js/midi/gm.js" type="text/javascript"></script>
+		<script src="bower_components/midi/js/midi/loader.js" type="text/javascript"></script>
+		<script src="bower_components/midi/js/midi/plugin.audiotag.js" type="text/javascript"></script>
+		<script src="bower_components/midi/js/midi/plugin.webaudio.js" type="text/javascript"></script>
+		<script src="bower_components/midi/js/midi/plugin.webmidi.js" type="text/javascript"></script>
+		<script src="bower_components/midi/js/util/dom_request_xhr.js" type="text/javascript"></script>
+		<script src="bower_components/midi/js/util/dom_request_script.js" type="text/javascript"></script>
+
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="bower_components/threejs/build/three.min.js"></script>
+		<script src="bower_components/dat-gui/build/dat.gui.min.js"></script>
+		<!-- endbuild-->
+		<!-- build:js build.js -->
+		<script src="src/main.js"></script>
+		<script src="src/midi.js"></script>
+		<script src="src/app.js"></script>
+		<!-- endbuild -->
+		<script type="text/javascript">
+			$(document).ready( function(){
+				$('#menuIcon').click(function(){
+					$('#menuContent').toggleClass('visible');
+					$('#content').toggleClass('menuOpen');
+				});
+			});
+		</script>
+	</body>
+
+
+
+	
+
+
+
+</html>
