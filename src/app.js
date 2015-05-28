@@ -70,7 +70,6 @@ angular.module('SolarSystemSoundMachine', ['ngMaterial', 'ngAnimate'])
 		})(document.createElement("style"));
 
 		angular.forEach(AppParameters.planets, function(planet){
-			console.log(planet.color);
 			addRule("md-slider.md-default-theme."+planet.name+" .md-thumb:after", {
 				background: '#'+planet.color.toString(16).toUpperCase(),
 				'border-color': '#'+planet.color.toString(16).toUpperCase()

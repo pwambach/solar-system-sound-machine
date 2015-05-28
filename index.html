@@ -12,31 +12,49 @@
 				color: #fefefe;
 				font-weight: 200;
 			}
+			* {
+			  margin: 0;
+			  padding: 0; 
+			}
 
-			#menuIcon {
+			#nav-icon1 {
 				position: absolute;
 				top: 0;
 				left: 0px;
 			}
 
-
-			#menuContentScrollWrapper {
+			#menuWrapper {
 				position: absolute;
 				top:0;
-				overflow-y: scroll;
 				height: 100%;
-				background: #36aaaa;
 				width: 300px;
 				transform: translateX(-300px);
 				transition: 0.25s ease-out;
 				overflow-x: hidden;
 			}
 
-			#menuContent {
-				padding: 50px 20px 20px 20px;
+			#menuContentScrollWrapper {
+				position: absolute;
+				top:0;
+				width: 100%;
+				overflow-y: scroll;
+				height: 100%;
+				background: #36aaaa;
 			}
 
-			#menuContentScrollWrapper.visible {
+			#menuContent {
+				padding: 100px 20px 20px 20px;
+			}
+
+			#menuHeader {
+				position: absolute;
+				background: #008a8a;
+				height: 64px;
+				width: 100%;
+				z-index: 1;
+			}
+
+			#menuWrapper.visible {
 				transform: translateX(0px);	
 			}
 
@@ -123,6 +141,81 @@
 				color: #ddd;
 			}
 
+
+
+
+
+
+			/* Icon 1 */
+
+			#nav-icon1, #nav-icon2, #nav-icon3, #nav-icon4 {
+			  width: 35px;
+			  height: 28px;
+			  position: absolute;
+			  top: 16px;
+			  left: 16px;
+			  -webkit-transform: rotate(0deg);
+			  -moz-transform: rotate(0deg);
+			  -o-transform: rotate(0deg);
+			  transform: rotate(0deg);
+			  -webkit-transition: .5s ease-in-out;
+			  -moz-transition: .5s ease-in-out;
+			  -o-transition: .5s ease-in-out;
+			  transition: .5s ease-in-out;
+			  cursor: pointer;
+			}
+
+			#nav-icon1 span, #nav-icon3 span, #nav-icon4 span {
+			  display: block;
+			  position: absolute;
+			  height: 5px;
+			  width: 100%;
+			  background: #fefefe;
+			  border-radius: 9px;
+			  opacity: 1;
+			  left: 0;
+			  -webkit-transform: rotate(0deg);
+			  -moz-transform: rotate(0deg);
+			  -o-transform: rotate(0deg);
+			  transform: rotate(0deg);
+			  -webkit-transition: .25s ease-in-out;
+			  -moz-transition: .25s ease-in-out;
+			  -o-transition: .25s ease-in-out;
+			  transition: .25s ease-in-out;
+			}
+
+			#nav-icon1 span:nth-child(1) {
+			  top: 0px;
+			}
+
+			#nav-icon1 span:nth-child(2) {
+			  top: 12px;
+			}
+
+			#nav-icon1 span:nth-child(3) {
+			  top: 24px;
+			}
+
+			#nav-icon1.open span:nth-child(1) {
+			  top: 12px;
+			  -webkit-transform: rotate(135deg);
+			  -moz-transform: rotate(135deg);
+			  -o-transform: rotate(135deg);
+			  transform: rotate(135deg);
+			}
+
+			#nav-icon1.open span:nth-child(2) {
+			  opacity: 0;
+			  left: -60px;
+			}
+
+			#nav-icon1.open span:nth-child(3) {
+			  top: 12px;
+			  -webkit-transform: rotate(-135deg);
+			  -moz-transform: rotate(-135deg);
+			  -o-transform: rotate(-135deg);
+			  transform: rotate(-135deg);
+			}
 		</style>
 	</head>
 	<body>
@@ -132,69 +225,98 @@
 		</div>
 		
 		<div id="menu" ng-app="SolarSystemSoundMachine">
-			<div id="menuContentScrollWrapper">
-				<div id="menuContent" ng-controller="MenuController as menu">
-					Universal Speed:
-					<md-slider ng-model="menu.params.rotationSpeed" min="0" max="20"></md-slider>
-					<br />
-
-					<div ng-repeat="planet in menu.params.planets">
-						<div planet-settings="planet">
-							<div class="planetSubSettings">
-
-
-								<div><span class="label">Note:</span>
-									<md-select placeholder="Note" ng-model="planet.note" parse-int>
-								    	<md-option value="0">C</md-option>
-								    	<md-option value="1">C#</md-option>
-								    	<md-option value="2">D</md-option>
-								    	<md-option value="3">D#</md-option>
-								    	<md-option value="4">E</md-option>
-								    	<md-option value="5">F</md-option>
-								    	<md-option value="6">F#</md-option>
-								    	<md-option value="7">G</md-option>
-								    	<md-option value="8">G#</md-option>
-								    	<md-option value="9">A</md-option>
-								    	<md-option value="10">A#</md-option>
-								    	<md-option value="11">B</md-option>
-								  	</md-select>
-							  	</div>
-
-							  	<div><span class="label">Octave:</span>
-									<md-select placeholder="Note" ng-model="planet.octave" parse-int>
-								    	<md-option value="1">1</md-option>
-								    	<md-option value="2">2</md-option>
-								    	<md-option value="3">3</md-option>
-								    	<md-option value="4">4</md-option>
-								  	</md-select>
-							  	</div>
-
-								<div>
-									<span class="label">Velocity:</span>
-									<md-slider ng-model="planet.velocity"
-												min="0"
-												max="127"
-												ng-class="planet.name"></md-slider>
-								</div>
-								<div>
-									<span class="label">Length:</span>
-									<md-slider ng-model="planet.noteLength"
-												min="0.1"
-												max="2"
-												step="0.1"
-												ng-class="planet.name"></md-slider>
-								</div>
-							</div>
-						</div>	
+			<div id="menuWrapper">
+				<div id="menuHeader"></div>
+				<div id="menuContentScrollWrapper">
+					<div id="menuContent" ng-controller="MenuController as menu">
+						Universal Speed:
+						<md-slider ng-model="menu.params.rotationSpeed" min="0" max="20"></md-slider>
 						<br />
+
+						<div ng-repeat="planet in menu.params.planets">
+							<div planet-settings="planet">
+								<div class="planetSubSettings">
+
+
+									<div><span class="label">Note:</span>
+										<md-select placeholder="Note" ng-model="planet.note" parse-int>
+									    	<md-option value="0">C</md-option>
+									    	<md-option value="1">C#</md-option>
+									    	<md-option value="2">D</md-option>
+									    	<md-option value="3">D#</md-option>
+									    	<md-option value="4">E</md-option>
+									    	<md-option value="5">F</md-option>
+									    	<md-option value="6">F#</md-option>
+									    	<md-option value="7">G</md-option>
+									    	<md-option value="8">G#</md-option>
+									    	<md-option value="9">A</md-option>
+									    	<md-option value="10">A#</md-option>
+									    	<md-option value="11">B</md-option>
+									  	</md-select>
+								  	</div>
+
+								  	<div><span class="label">Octave:</span>
+										<md-select placeholder="Note" ng-model="planet.octave" parse-int>
+									    	<md-option value="1">1</md-option>
+									    	<md-option value="2">2</md-option>
+									    	<md-option value="3">3</md-option>
+									    	<md-option value="4">4</md-option>
+									  	</md-select>
+								  	</div>
+
+									<div>
+										<span class="label">Velocity:</span>
+										<md-slider ng-model="planet.velocity"
+													min="0"
+													max="127"
+													ng-class="planet.name"></md-slider>
+									</div>
+									<div>
+										<span class="label">Length:</span>
+										<md-slider ng-model="planet.noteLength"
+													min="0.1"
+													max="2"
+													step="0.1"
+													ng-class="planet.name"></md-slider>
+									</div>
+								</div>
+							</div>	
+							<br />
+						</div>
 					</div>
 				</div>
 			</div>
-			<div id="menuIcon">X</div>
+			<div id="nav-icon1">
+			  <span></span>
+			  <span></span>
+			  <span></span>
+			</div>
 		</div>
 
 
 
+		<script type="x-shader/x-vertex" id="vertexShader">
+			varying vec2 vUv;
+			varying vec4 glPos;
+
+			void main() {
+    			vUv = uv;
+    			vec3 newPosition = position;
+    			newPosition.x = newPosition.x + cos(newPosition.x)*2.0;
+    			newPosition.z = newPosition.z + sin(newPosition.z)*2.0;
+    			
+    			gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
+    			glPos = gl_Position;
+			}
+		</script>
+		<script type="x-shader/x-fragment" id="fragmentShader">
+			varying vec2 vUv;
+			varying vec4 glPos;
+
+			void main() {
+			    gl_FragColor = vec4( vec3( 0.5, 0.5, 0.5), 1. );
+			}
+		</script>
 
 
 		
@@ -229,12 +351,14 @@
 		<!-- endbuild -->
 		<script type="text/javascript">
 			$(document).ready( function(){
-				$('#menuIcon').click(function(){
-					$('#menuContentScrollWrapper').toggleClass('visible');
+				$('#nav-icon1').click(function(){
+					$('#menuWrapper').toggleClass('visible');
+					$('#nav-icon1').toggleClass('open');
 					$('#content').toggleClass('menuOpen');
 				});
 			});
 		</script>
+
 	</body>
 
 

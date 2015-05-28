@@ -72,6 +72,18 @@
 	scene.add( spotLight );
 
 
+	//BeatLine
+	var lineGeometry = new THREE.Geometry();
+    lineGeometry.vertices.push(new THREE.Vector3(12, -10, planets[0].distanceToSun));
+    lineGeometry.vertices.push(new THREE.Vector3(12, -10, planets[planets.length-1].distanceToSun));
+    var line = new THREE.Line(
+    	lineGeometry, 
+    	new THREE.LineBasicMaterial({
+	        color: 0x73e5e5
+	    })
+	);
+    scene.add(line);
+
 	//Planets
 	planets.forEach(function(planetData){
 		var planet = createPlanetMesh(planetData);
@@ -108,8 +120,15 @@
 
 	function createCircle(radius){
 		var segmentCount = 64,
-		geometry = new THREE.Geometry(),
+		geometry = new THREE.Geometry();
 		material = new THREE.LineBasicMaterial({ color: lineColor });
+
+		/*var shaderMaterial = new THREE.ShaderMaterial( {
+		    vertexShader: document.getElementById( 'vertexShader' ).textContent,
+		    fragmentShader: document.getElementById( 'fragmentShader' ).textContent
+		} );
+
+		var material = shaderMaterial;*/
 
 		for (var i = 0; i <= segmentCount; i++) {
 		    var theta = (i / segmentCount) * Math.PI * 2;
@@ -126,12 +145,13 @@
 	}
 
 	function roundComplete(planet){
-		highlightLine(planet.circle.material);
+		highlightLine(planet.circle.material, 4);
+		highlightLine(line.material, 4);
 		playNote(planet.note+(12*(planet.octave+1)), planet.velocity, planet.noteLength);
 	}
 
-	function highlightLine(lineMaterial){
-		lineMaterial.linewidth = 4;
+	function highlightLine(lineMaterial, width){
+		lineMaterial.linewidth = width;
 		
 		var shrinkLine = function(){
 			requestAnimationFrame(function(){
