@@ -180,6 +180,7 @@
 	}
 	$container.append(renderer.domElement); 
 	render();
+	var windowResize = THREEx.WindowResize(renderer, orthoCamera);
 
 })(window.appParameters);
 

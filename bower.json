@@ -15,5 +15,12 @@
   "dependencies": {
     "jquery": "~2.1.3",
     "threejs": "*",
+    "threex.windowresize": "*",
+    "angular": "~1.4.0",
+    "angular-material": "~0.9.4",
+    "angular-aria": "~1.4.0",
+    "angular-animate": "~1.4.0",
+    "midi": "*",
+    "midi-soundfonts-partial": "*"
   }
 }

@@ -49,7 +49,7 @@
 			#menuHeader {
 				position: absolute;
 				background: #008a8a;
-				height: 64px;
+				height: 62px;
 				width: 100%;
 				z-index: 1;
 			}
@@ -104,26 +104,30 @@
 				min-width: 82px;
 			}
 
+			.collapsable .collapsable-heading-text:before {
+				display: inline-block;
+				content: '\25BC';
+				position: relative;
+				margin-right: 4px;
+				transform: rotateZ(-90deg) scaleY(0.6);
+				transition: all ease-in-out 0.2s;
+			}
+
+			.collapsable .collapsable-heading-text.rotate:before {
+				transform: scaleY(0.6);
+			}
+
 			.collapsable .collapsable-heading {
 			    cursor: pointer;
 			}
 			.collapsable .collapsable-heading-text:focus {
 			    outline: none;
 			}
-			
-			.collapsable .collapsable-heading-text {
-			    padding-left: 2px;
-			}
-
-			.collapsable .collapsable-heading-text i {
-			    transition: all ease-in-out 0.2s;
-			}
 
 			.collapsable .collapsable-animate {
 			    max-height: 0px;
 			    overflow: hidden;
 			    opacity: 0;
-			    -webkit-transition: all ease-in-out 0.5s;
 			    transition: all ease-in-out 0.5s;
 			}
 
@@ -146,13 +150,15 @@
 
 
 
+
+
 			/* Icon 1 */
 
 			#nav-icon1, #nav-icon2, #nav-icon3, #nav-icon4 {
-			  width: 35px;
+			  width: 34px;
 			  height: 28px;
 			  position: absolute;
-			  top: 16px;
+			  top: 18px;
 			  left: 16px;
 			  -webkit-transform: rotate(0deg);
 			  -moz-transform: rotate(0deg);
@@ -168,7 +174,7 @@
 			#nav-icon1 span, #nav-icon3 span, #nav-icon4 span {
 			  display: block;
 			  position: absolute;
-			  height: 5px;
+			  height: 4px;
 			  width: 100%;
 			  background: #fefefe;
 			  border-radius: 9px;
@@ -189,15 +195,15 @@
 			}
 
 			#nav-icon1 span:nth-child(2) {
-			  top: 12px;
+			  top: 11px;
 			}
 
 			#nav-icon1 span:nth-child(3) {
-			  top: 24px;
+			  top: 22px;
 			}
 
 			#nav-icon1.open span:nth-child(1) {
-			  top: 12px;
+			  top: 11px;
 			  -webkit-transform: rotate(135deg);
 			  -moz-transform: rotate(135deg);
 			  -o-transform: rotate(135deg);
@@ -210,7 +216,7 @@
 			}
 
 			#nav-icon1.open span:nth-child(3) {
-			  top: 12px;
+			  top: 11px;
 			  -webkit-transform: rotate(-135deg);
 			  -moz-transform: rotate(-135deg);
 			  -o-transform: rotate(-135deg);
@@ -238,7 +244,7 @@
 								<div class="planetSubSettings">
 
 
-									<div><span class="label">Note:</span>
+									<div><span class="label">Note</span>
 										<md-select placeholder="Note" ng-model="planet.note" parse-int>
 									    	<md-option value="0">C</md-option>
 									    	<md-option value="1">C#</md-option>
@@ -255,7 +261,7 @@
 									  	</md-select>
 								  	</div>
 
-								  	<div><span class="label">Octave:</span>
+								  	<div><span class="label">Octave</span>
 										<md-select placeholder="Note" ng-model="planet.octave" parse-int>
 									    	<md-option value="1">1</md-option>
 									    	<md-option value="2">2</md-option>
@@ -265,14 +271,14 @@
 								  	</div>
 
 									<div>
-										<span class="label">Velocity:</span>
+										<span class="label">Velocity</span>
 										<md-slider ng-model="planet.velocity"
 													min="0"
 													max="127"
 													ng-class="planet.name"></md-slider>
 									</div>
 									<div>
-										<span class="label">Length:</span>
+										<span class="label">Length</span>
 										<md-slider ng-model="planet.noteLength"
 													min="0.1"
 													max="2"
@@ -323,6 +329,7 @@
 		<!-- build:js vendor.js -->
 		<script src="bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="bower_components/threejs/build/three.min.js"></script>
+		<script src="bower_components/threex.windowresize/threex.windowresize.js"></script>
 
 		<script src="bower_components/angular/angular.js"></script>
     	<script src="bower_components/angular-aria/angular-aria.js"></script>
