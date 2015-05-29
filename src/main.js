@@ -8,6 +8,11 @@
 	var PI2 = Math.PI*2;
 	var planets = appParameters.planets;
 
+	var frameUniform = {
+	    type: 'f',
+	    value: 0
+	};
+
 	// set the scene size
 	var WIDTH = $(document).width();
 	var HEIGHT = $(document).height();
@@ -87,7 +92,11 @@
 	//Planets
 	planets.forEach(function(planetData){
 		var planet = createPlanetMesh(planetData);
-		planetData.circle = createCircle(planetData.distanceToSun);
+		planetData.amplitude = {
+			type: 'f',
+			value: 0
+		}
+		planetData.circle = createCircle(planetData);
 		scene.add(planet);
 	});
 
@@ -118,25 +127,29 @@
 		}
 	}
 
-	function createCircle(radius){
+	function createCircle(planet){
 		var segmentCount = 64,
 		geometry = new THREE.Geometry();
 		material = new THREE.LineBasicMaterial({ color: lineColor });
 
-		/*var shaderMaterial = new THREE.ShaderMaterial( {
+		var shaderMaterial = new THREE.ShaderMaterial( {
+			uniforms: {
+				frame: frameUniform,
+				amplitude: planet.amplitude
+			},
 		    vertexShader: document.getElementById( 'vertexShader' ).textContent,
 		    fragmentShader: document.getElementById( 'fragmentShader' ).textContent
 		} );
 
-		var material = shaderMaterial;*/
+		var material = shaderMaterial;
 
 		for (var i = 0; i <= segmentCount; i++) {
 		    var theta = (i / segmentCount) * Math.PI * 2;
 		    geometry.vertices.push(
 		        new THREE.Vector3(
-		            Math.cos(theta) * radius,
+		            Math.cos(theta) * planet.distanceToSun,
 		            0,
-		            Math.sin(theta) * radius));            
+		            Math.sin(theta) * planet.distanceToSun));
 		}
 
 		var circle = new THREE.Line(geometry, material)
@@ -145,19 +158,19 @@
 	}
 
 	function roundComplete(planet){
-		highlightLine(planet.circle.material, 4);
-		highlightLine(line.material, 4);
+		highlightLine(planet.amplitude, planet.velocity/10);
 		playNote(planet.note+(12*(planet.octave+1)), planet.velocity, planet.noteLength);
 	}
 
-	function highlightLine(lineMaterial, width){
-		lineMaterial.linewidth = width;
-		
+	function highlightLine(amplitude, value){
+		amplitude.value = value;
 		var shrinkLine = function(){
 			requestAnimationFrame(function(){
-				lineMaterial.linewidth = lineMaterial.linewidth - 0.2;
-				if(lineMaterial.linewidth > 1){
+				amplitude.value = amplitude.value - 0.1;
+				if(amplitude.value > 0.0){
 					shrinkLine();
+				} else {
+					amplitude.value = 0.0;
 				}
 			});
 		}
@@ -175,6 +188,7 @@
 	// Render loop
 	function render() {
 		planets.forEach(rotatePlanet);
+		frameUniform.value++;
 	    renderer.render(scene, orthoCamera);
 	    requestAnimationFrame(render);
 	}

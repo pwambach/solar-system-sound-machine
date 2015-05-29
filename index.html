@@ -11,6 +11,7 @@
 				font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 				color: #fefefe;
 				font-weight: 200;
+				background-color: #43d3d3;
 			}
 			* {
 			  margin: 0;
@@ -60,7 +61,7 @@
 				background: #008a8a;
 				height: 62px;
 				width: 100%;
-				z-index: 1;
+				z-index: 2;
 			}
 
 			#menuWrapper.visible {
@@ -162,11 +163,6 @@
 
 
 
-
-
-
-
-
 			/* Icon 1 */
 
 			#nav-icon1, #nav-icon2, #nav-icon3, #nav-icon4 {
@@ -185,10 +181,6 @@
 			  transition: .5s ease-in-out;
 			  cursor: pointer;
 			}
-/*
-			#nav-icon1.open {
-				left:20px;
-			}*/
 
 			#nav-icon1 span, #nav-icon3 span, #nav-icon4 span {
 			  display: block;
@@ -246,7 +238,7 @@
 			#logo {
 				position: absolute;
 				top: -10px;
-				right: -60px;
+				right: -70px;
 				z-index: 1;
 			}
 		</style>
@@ -339,25 +331,23 @@
 
 
 		<script type="x-shader/x-vertex" id="vertexShader">
+			uniform float frame;
+			uniform float amplitude;
 			varying vec2 vUv;
-			varying vec4 glPos;
 
 			void main() {
     			vUv = uv;
     			vec3 newPosition = position;
-    			newPosition.x = newPosition.x + cos(newPosition.x)*2.0;
-    			newPosition.z = newPosition.z + sin(newPosition.z)*2.0;
-    			
+    			newPosition.x = newPosition.x + sin(newPosition.x+frame*0.5)*amplitude;
+    			newPosition.z = newPosition.z + sin(newPosition.z+frame*0.5)*amplitude;
     			gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
-    			glPos = gl_Position;
 			}
 		</script>
 		<script type="x-shader/x-fragment" id="fragmentShader">
 			varying vec2 vUv;
-			varying vec4 glPos;
 
 			void main() {
-			    gl_FragColor = vec4( vec3( 0.5, 0.5, 0.5), 1. );
+			    gl_FragColor = vec4( vec3( 1., 1., 1.), 1. );
 			}
 		</script>
 
