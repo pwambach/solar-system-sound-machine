@@ -2,7 +2,7 @@ angular.module('SolarSystemSoundMachine', ['ngMaterial', 'ngAnimate'])
 
 	.config(function($mdThemingProvider) {
 	  $mdThemingProvider.theme('default')
-	    .primaryPalette('grey')
+	    .primaryPalette('cyan')
 	    .accentPalette('cyan');
 	})
 
@@ -58,7 +58,9 @@ angular.module('SolarSystemSoundMachine', ['ngMaterial', 'ngAnimate'])
 		}
 	})
 
-	.run(['AppParameters', function(AppParameters){
+	.run(['$rootScope', 'AppParameters', function($rootScope, AppParameters){
+		$rootScope.menuVisible = false;
+
 		var addRule = (function(style){
 		 	var sheet = document.head.appendChild(style).sheet;
 		    return function(selector, css){

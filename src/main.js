@@ -35,10 +35,10 @@
 	scene.add( light );
 
 	//Point Light
-	var pointLight = new THREE.PointLight( 0xffffff, 0.5 );
+	var pointLight = new THREE.PointLight( 0xffff55, 0.4 );
 	pointLight.position.y = 30;
-	// pointLight.position.z = 20;
-	// pointLight.position.x = -20;
+	 pointLight.position.z = 10;
+	 pointLight.position.x = -5;
 	scene.add( pointLight );
 
 	// Background Plane
@@ -53,7 +53,7 @@
 	// Sun
 	scene.add(new THREE.Mesh(
 		new THREE.SphereGeometry( 15, 30, 30 ),
-		new THREE.MeshLambertMaterial({color: 'yellow'})
+		new THREE.MeshLambertMaterial({color: 0xD9CC59})
 	));
 
 
