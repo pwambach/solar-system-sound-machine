@@ -158,7 +158,7 @@
 	}
 
 	function roundComplete(planet){
-		highlightLine(planet.amplitude, planet.velocity/10);
+		highlightLine(planet.amplitude, planet.velocity/15);
 		playNote(planet.note+(12*(planet.octave+1)), planet.velocity, planet.noteLength);
 	}
 
