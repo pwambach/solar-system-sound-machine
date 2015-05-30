@@ -115,6 +115,31 @@
 		var rotationWrapper = new THREE.Object3D();
 		rotationWrapper.add(sphere);
 		planet.mesh = rotationWrapper;
+
+
+		if(planet.name === "Earth"){
+			var moon = new THREE.Mesh(
+				new THREE.SphereGeometry( 1.2, 8, 8 ),
+				new THREE.MeshLambertMaterial({color: 0x969696})
+			);
+			moon.position.x = 8;
+			moon.castShadow = true;
+			sphere.rotation.x = 0.5;
+			sphere.receiveShadow = true;
+			sphere.add(moon);
+		}
+
+
+		if(planet.name === "Saturn"){					
+			var ring = new THREE.Mesh(
+			new THREE.RingGeometry(7, 10, 16, 1, 0, Math.PI * 2),
+			new THREE.MeshLambertMaterial({color: 0xD9AE79}));
+			ring.rotation.x = -Math.PI/2 - 0.4;
+			ring.rotation.z = Math.PI/4;
+			ring.castShadow = true;
+			sphere.add(ring);
+		}
+
 		return rotationWrapper;
 	}
 
@@ -124,6 +149,9 @@
 		if(planet.mesh.rotation.y > PI2){
 			roundComplete(planet);
 			planet.mesh.rotation.y = 0;
+		}
+		if(planet.name === "Earth" || planet.name === "Saturn"){
+			planet.mesh.children[0].rotation.y += (planet.rotation * (appParameters.rotationSpeed)) * 4;
 		}
 	}
 
@@ -158,11 +186,11 @@
 	}
 
 	function roundComplete(planet){
-		vibrateCircle(planet.amplitude, planet.velocity);
+		setAmplitude(planet.amplitude, planet.velocity);
 		playNote(planet.note+(12*(planet.octave+1)), planet.velocity, planet.noteLength);
 	}
 
-	function vibrateCircle(amplitude, value){
+	function setAmplitude(amplitude, value){
 		amplitude.value = 2 + (value/127)*4;
 		var reduceAmplitude = function(){
 			requestAnimationFrame(function(){

@@ -333,10 +333,8 @@
 		<script type="x-shader/x-vertex" id="vertexShader">
 			uniform float frame;
 			uniform float amplitude;
-			varying vec2 vUv;
 
 			void main() {
-    			vUv = uv;
     			vec3 newPosition = position;
     			newPosition.x = newPosition.x + sin(newPosition.x+frame*0.5)*amplitude;
     			newPosition.z = newPosition.z + sin(newPosition.z+frame*0.5)*amplitude;
@@ -344,7 +342,6 @@
 			}
 		</script>
 		<script type="x-shader/x-fragment" id="fragmentShader">
-			varying vec2 vUv;
 			uniform float amplitude;
 
 			void main() {
