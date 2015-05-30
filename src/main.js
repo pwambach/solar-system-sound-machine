@@ -29,7 +29,7 @@
 	var scene = new THREE.Scene();
 
 	//Orthographic Camera
-	var d = 200;
+	var d = 220;
 	var orthoCamera = new THREE.OrthographicCamera( - d * ASPECT, d * ASPECT, d, - d, 1, 2500 );
 	orthoCamera.position.set( -200, 160, 0 );
 	orthoCamera.lookAt( new THREE.Vector3(0,0,0) );
@@ -70,7 +70,7 @@
 	spotLight.shadowMapHeight = 1024;
 	spotLight.shadowCameraNear = 10;
 	spotLight.shadowCameraFar = 800;
-	spotLight.shadowCameraFov = 170;
+	spotLight.shadowCameraFov = 172;
 	spotLight.shadowDarkness = 0.1;
 	spotLight.shadowCameraVisible = false;
 	spotLight.onlyShadow = false;
@@ -222,7 +222,7 @@
 	}
 	$container.append(renderer.domElement); 
 	render();
-	var windowResize = THREEx.WindowResize(renderer, orthoCamera);
+	var windowResize = THREEx.WindowResize(renderer, orthoCamera, undefined, 220);
 
 })(window.appParameters);
 
