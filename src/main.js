@@ -158,23 +158,23 @@
 	}
 
 	function roundComplete(planet){
-		highlightLine(planet.amplitude, planet.velocity/15);
+		vibrateCircle(planet.amplitude, planet.velocity);
 		playNote(planet.note+(12*(planet.octave+1)), planet.velocity, planet.noteLength);
 	}
 
-	function highlightLine(amplitude, value){
-		amplitude.value = value;
-		var shrinkLine = function(){
+	function vibrateCircle(amplitude, value){
+		amplitude.value = 2 + (value/127)*4;
+		var reduceAmplitude = function(){
 			requestAnimationFrame(function(){
 				amplitude.value = amplitude.value - 0.1;
 				if(amplitude.value > 0.0){
-					shrinkLine();
+					reduceAmplitude();
 				} else {
 					amplitude.value = 0.0;
 				}
 			});
 		}
-		shrinkLine();
+		reduceAmplitude();
 	}
 
 	function playNote(note, velocity, length){

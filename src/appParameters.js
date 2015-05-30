@@ -1,5 +1,5 @@
 window.appParameters = {
-	rotationSpeed: 4,
+	rotationSpeed: 5,
 	planets: [
 		{
 			name: "Mercury",
@@ -8,7 +8,7 @@ window.appParameters = {
 			color: 0x875581,
 			rotation: 1/88,
 			note: 0,
-			velocity: 20,
+			velocity: 30,
 			noteLength: 0.2,
 			octave: 3,
 		},
@@ -19,7 +19,7 @@ window.appParameters = {
 			color: 0xAEA4CF,
 			rotation: 1/225,
 			note: 7,
-			velocity: 80,
+			velocity: 70,
 			noteLength: 1,
 			octave: 3
 		},

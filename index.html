@@ -345,9 +345,10 @@
 		</script>
 		<script type="x-shader/x-fragment" id="fragmentShader">
 			varying vec2 vUv;
+			uniform float amplitude;
 
 			void main() {
-			    gl_FragColor = vec4( vec3( .53, .95, .95), 1. );
+			    gl_FragColor = vec4( .53, .95, .95, 1. ) + (amplitude / 10.0);
 			}
 		</script>
 
