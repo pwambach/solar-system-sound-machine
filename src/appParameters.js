@@ -9,7 +9,7 @@ window.appParameters = {
 			rotation: 1/88,
 			note: 0,
 			velocity: 30,
-			noteLength: 0.2,
+			noteLength: 0.5,
 			octave: 3,
 		},
 		{
@@ -18,10 +18,10 @@ window.appParameters = {
 			radius: 4.2,
 			color: 0xAEA4CF,
 			rotation: 1/225,
-			note: 7,
+			note: 9,
 			velocity: 70,
 			noteLength: 1,
-			octave: 3
+			octave: 4
 		},
 		{
 			name: "Earth",
@@ -29,10 +29,10 @@ window.appParameters = {
 			radius: 5,
 			color: 0x107ACB,
 			rotation: 1/365,
-			note: 9,
+			note: 7,
 			velocity: 80,
 			noteLength: 1,
-			octave: 3
+			octave: 4
 		},
 		{
 			name: "Mars",
@@ -40,29 +40,29 @@ window.appParameters = {
 			radius: 3,
 			color: 0xD94141,
 			rotation: 1/687,
-			note: 0,
+			note: 4,
 			velocity: 80,
 			noteLength: 1,
 			octave: 4
 		}
 		,{
 			name: "Jupiter",
-			distanceToSun: 200,
+			distanceToSun: 180,
 			radius: 7,
 			color: 0x3FC7B8,
 			rotation: 1/4329,
-			note: 0,
+			note: 7,
 			velocity: 80,
 			noteLength: 1,
 			octave: 3
 		},
 		{
 			name: "Saturn",
-			distanceToSun: 240,
+			distanceToSun: 220,
 			radius: 5,
 			color: 0xEBB779,
 			rotation: 1/10751,
-			note: 0,
+			note: 5,
 			velocity: 80,
 			noteLength: 1,
 			octave: 3

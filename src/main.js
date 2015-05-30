@@ -4,7 +4,7 @@
 
 	var $container = $('#canvasContainer');
 	var backgroundColor = 0x43d3d3;
-	var lineColor = 0x83efef;
+	var lineColor = 0x93f5f5;
 	var PI2 = Math.PI*2;
 	var planets = appParameters.planets;
 
