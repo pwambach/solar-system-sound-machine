@@ -54,4 +54,4 @@ THREEx.WindowResize	= function(renderer, camera, dimension, orthographicDistance
 			window.removeEventListener('resize', callback)
 		}
 	}
-}
+};

@@ -9,7 +9,7 @@ Libraries/Snippets used:
 - Midi.js
 - AngularJS 1.4
 - Anuglar Material (https://material.angularjs.org)
-- threex.windowresize (https://github.com/jeromeetienne/threex.windowresize) by Jerome Etienne (had to adapt it to Orthographic Cameras) 
+- threex.windowresize (https://github.com/jeromeetienne/threex.windowresize) by Jerome Etienne (adapted it to Orthographic Cameras) 
 - Animated CSS Hamburger Icon from http://codepen.io/designcouch/pen/Atyop by Jesse Couch
 
 Author: Philipp Wambach
