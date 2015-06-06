@@ -58,7 +58,7 @@
 	// Sun
 	scene.add(new THREE.Mesh(
 		new THREE.SphereGeometry( 15, 30, 30 ),
-		new THREE.MeshLambertMaterial({color: 0xD9CC59})
+		new THREE.MeshLambertMaterial({color: 0xF9EC79})
 	));
 
 
