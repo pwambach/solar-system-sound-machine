@@ -23,7 +23,7 @@ angular.module('SolarSystemSoundMachine', ['ngMaterial', 'ngAnimate'])
   					'<div class="collapsable-heading"',
     					'<span></span>',
     					'<span class="collapsable-heading-text" ng-class="{\'rotate\': viewModel.collapsed}" ng-click="toggle()">{{planet.name}}</span>',
-  						'<md-slider ng-model="planet.rotation" min="0" max="0.03" step="0.0001" class="planetSlider" ng-class="planet.name"></md-slider>',
+  						'<md-slider ng-model="planet.rotation" min="0" max="0.02" step="0.0001" class="planetSlider" ng-class="planet.name"></md-slider>',
   					'</div>',
   					'<div ng-class="{\'collapsed\': viewModel.collapsed}" class="collapsable-body collapsable-animate margin-top-5" ng-transclude></div>',
 					'</div>'].join(''),
