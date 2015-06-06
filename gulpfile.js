@@ -28,5 +28,5 @@ gulp.task('copy', function(){
  
 gulp.task('deploy', ['default'], function () {
     return gulp.src('./dist/**/*')
-        .pipe(deploy({push: true}));
+        .pipe(deploy({push: false}));
 });
