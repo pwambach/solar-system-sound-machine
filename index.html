@@ -32,7 +32,7 @@
 				<div id="menuContentScrollWrapper">
 					<div id="menuContent" ng-controller="MenuController as menu">
 						Universal Speed:
-						<md-slider ng-model="menu.params.rotationSpeed" min="0" max="20"></md-slider>
+						<md-slider ng-model="menu.params.rotationSpeed" min="0" max="20" aria-label="universal speed"></md-slider>
 						<br />
 
 						<div ng-repeat="planet in menu.params.planets">
@@ -71,7 +71,8 @@
 										<md-slider ng-model="planet.velocity"
 													min="1"
 													max="127"
-													ng-class="planet.name"></md-slider>
+													ng-class="planet.name"
+													aria-label="{{planet.name}} velocity"></md-slider>
 									</div>
 									<div>
 										<span class="label">Length</span>
@@ -79,7 +80,8 @@
 													min="0.1"
 													max="2"
 													step="0.1"
-													ng-class="planet.name"></md-slider>
+													ng-class="planet.name"
+													aria-label="{{planet.name}} note length"></md-slider>
 									</div>
 								</div>
 							</div>	
