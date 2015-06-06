@@ -21,6 +21,7 @@
     "angular-aria": "~1.4.0",
     "angular-animate": "~1.4.0",
     "midi": "*",
-    "midi-soundfonts-partial": "*"
+    "midi-soundfonts-partial": "*",
+    "tuna.js": "https://github.com/Dinahmoe/tuna.git"
   }
 }

@@ -8,8 +8,8 @@ window.appParameters = {
 			color: 0x875581,
 			rotation: 1/88,
 			note: 0,
-			velocity: 30,
-			noteLength: 0.5,
+			velocity: 1,
+			noteLength: 0.8,
 			octave: 3,
 		},
 		{
@@ -66,6 +66,46 @@ window.appParameters = {
 			velocity: 80,
 			noteLength: 1,
 			octave: 3
+		},
+		{
+			name: "Uranus",
+			distanceToSun: 260,
+			radius: 4,
+			color: 0x6B95E9,
+			rotation: 1/30660,
+			note: 7,
+			velocity: 80,
+			noteLength: 1,
+			octave: 2
+		},
+		{
+			name: "Neptune",
+			distanceToSun: 300,
+			radius: 3.8,
+			color: 0x3B47F9,
+			rotation: 1/60225,
+			note: 5,
+			velocity: 80,
+			noteLength: 1,
+			octave: 2
 		}
+	],
+	effects: [
+		{
+	        type: "Phaser",
+	        rate: 2, // 0.01 to 8 is a decent range, but higher values are possible
+	        depth: 0.2, // 0 to 1
+	        feedback: 0.2, // 0 to 1+
+	        stereoPhase: 10, // 0 to 180
+	        baseModulationFrequency: 1000, // 500 to 1500
+	        bypass: 0
+	    },
+        {
+	        type: "Chorus",
+	        rate: 1.5,
+	        feedback: 0.2,
+	        delay: 0.0045,
+	        bypass: 0
+	    }
 	]
 };
