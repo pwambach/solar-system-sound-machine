@@ -431,7 +431,7 @@ angular.module('SolarSystemSoundMachine', ['ngMaterial', 'ngAnimate'])
   				'background-color': '#'+planet.color.toString(16).toUpperCase()
 			});
 		});
-	}])
+	}]);
 
 
 
