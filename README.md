@@ -1,7 +1,8 @@
 ##Solar System Sound Machine
 
 
-Solar System Sound Machine is an experimental and fun project to learn and play around with web technnologies like WebGl, Shader programming and the WebAudio API.
+Solar System Sound Machine is an experimental and fun project to learn and play around with web technnologies like WebGL (Three.js), Shader programming and the WebAudio API.
+
 
 ###Libraries/Snippets used:
 
