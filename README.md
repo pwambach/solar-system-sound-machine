@@ -3,7 +3,7 @@
 
 Solar System Sound Machine is an experimental and fun project to learn and play around with web technnologies like WebGL (Three.js), Shader programming and the WebAudio API.
 
-(http://pwambach.github.io/solar-system-sound-machine/)
+[View Project](http://pwambach.github.io/solar-system-sound-machine/)
 
 ###Libraries/Snippets used:
 
