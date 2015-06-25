@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('SolarSystemSoundMachine', ['ngMaterial', 'ngAnimate'])
 
 	.config(function($mdThemingProvider) {
@@ -5,6 +7,8 @@ angular.module('SolarSystemSoundMachine', ['ngMaterial', 'ngAnimate'])
 	    .primaryPalette('cyan')
 	    .accentPalette('cyan');
 	})
+
+
 
 	.constant('AppParameters', window.appParameters)
 
@@ -55,7 +59,7 @@ angular.module('SolarSystemSoundMachine', ['ngMaterial', 'ngAnimate'])
 					return parseInt(a,10);
 				});
 			}	
-		}
+		};
 	})
 
 	.run(['$rootScope', 'AppParameters', function($rootScope, AppParameters){
@@ -65,10 +69,10 @@ angular.module('SolarSystemSoundMachine', ['ngMaterial', 'ngAnimate'])
 		 	var sheet = document.head.appendChild(style).sheet;
 		    return function(selector, css){
 		        var propText = Object.keys(css).map(function(p){
-		            return p+":"+css[p]
+		            return p+":"+css[p];
 		        }).join(";");
 		        sheet.insertRule(selector + "{" + propText + "}", sheet.cssRules.length);
-		    }
+		    };
 		})(document.createElement("style"));
 
 		angular.forEach(AppParameters.planets, function(planet){
@@ -80,7 +84,7 @@ angular.module('SolarSystemSoundMachine', ['ngMaterial', 'ngAnimate'])
   				'background-color': '#'+planet.color.toString(16).toUpperCase()
 			});
 		});
-	}])
+	}]);
 
 
 
