@@ -1,5 +1,5 @@
 window.appParameters = {
-	rotationSpeed: 6,
+	rotationSpeed: 5,
 	planets: [
 		{
 			name: "Mercury",
