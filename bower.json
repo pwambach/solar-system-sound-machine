@@ -17,7 +17,7 @@
     "threejs": "*",
     "threex.windowresize": "*",
     "angular": "~1.4.0",
-    "angular-material": "~0.9.4",
+    "angular-material": "~0.10.0",
     "angular-aria": "~1.4.0",
     "angular-animate": "~1.4.0",
     "midi": "*",
