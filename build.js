@@ -1,5 +1,5 @@
 window.appParameters = {
-	rotationSpeed: 8,
+	rotationSpeed: 6,
 	planets: [
 		{
 			name: "Mercury",
@@ -114,7 +114,7 @@ window.onload = function () {
 		soundfontUrl: "./bower_components/midi-soundfonts-partial/FluidR3_GM/",
 		instrument: "acoustic_grand_piano",
 		onsuccess: function(){
-			//MIDI.setEffects(appParameters.effects);
+			MIDI.ready = true;
 		}
 	});
 };
@@ -330,8 +330,10 @@ window.onload = function () {
 	function playNote(note, velocity, length){
 		var _length = length || 1;
 		var _velocity = velocity || 90;
-		MIDI.noteOn(0, note, _velocity, 0);
-		MIDI.noteOff(0, note, _length);
+		if(MIDI.ready){
+			MIDI.noteOn(0, note, _velocity, 0);
+			MIDI.noteOff(0, note, _length);
+		}
 	}
 
 
@@ -349,6 +351,8 @@ window.onload = function () {
 })(window.appParameters);
 
 
+'use strict';
+
 angular.module('SolarSystemSoundMachine', ['ngMaterial', 'ngAnimate'])
 
 	.config(function($mdThemingProvider) {
@@ -356,6 +360,8 @@ angular.module('SolarSystemSoundMachine', ['ngMaterial', 'ngAnimate'])
 	    .primaryPalette('cyan')
 	    .accentPalette('cyan');
 	})
+
+
 
 	.constant('AppParameters', window.appParameters)
 
@@ -406,7 +412,7 @@ angular.module('SolarSystemSoundMachine', ['ngMaterial', 'ngAnimate'])
 					return parseInt(a,10);
 				});
 			}	
-		}
+		};
 	})
 
 	.run(['$rootScope', 'AppParameters', function($rootScope, AppParameters){
@@ -416,10 +422,10 @@ angular.module('SolarSystemSoundMachine', ['ngMaterial', 'ngAnimate'])
 		 	var sheet = document.head.appendChild(style).sheet;
 		    return function(selector, css){
 		        var propText = Object.keys(css).map(function(p){
-		            return p+":"+css[p]
+		            return p+":"+css[p];
 		        }).join(";");
 		        sheet.insertRule(selector + "{" + propText + "}", sheet.cssRules.length);
-		    }
+		    };
 		})(document.createElement("style"));
 
 		angular.forEach(AppParameters.planets, function(planet){
