@@ -208,8 +208,10 @@
 	function playNote(note, velocity, length){
 		var _length = length || 1;
 		var _velocity = velocity || 90;
-		MIDI.noteOn(0, note, _velocity, 0);
-		MIDI.noteOff(0, note, _length);
+		if(MIDI.ready){
+			MIDI.noteOn(0, note, _velocity, 0);
+			MIDI.noteOff(0, note, _length);
+		}
 	}
 
 
