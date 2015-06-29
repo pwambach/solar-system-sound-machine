@@ -4,10 +4,10 @@ var gulp = require('gulp'),
     useref = require('gulp-useref'),
     deploy = require('gulp-gh-pages'),
     copy = require('gulp-copy');
- 
+
 gulp.task('default', function () {
     var assets = useref.assets();
-    
+
     return gulp.src('index.html')
         .pipe(assets)
         .pipe(assets.restore())
@@ -25,8 +25,8 @@ gulp.task('copy', function(){
     ]).pipe(copy('dist'));
 });
 
- 
+
 gulp.task('deploy', ['default'], function () {
     return gulp.src('./dist/**/*')
-        .pipe(deploy({push: false}));
+        .pipe(deploy({push: true}));
 });
