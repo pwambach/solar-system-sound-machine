@@ -7,7 +7,7 @@ body {
 }
 * {
   margin: 0;
-  padding: 0; 
+  padding: 0;
 }
 
 *:focus {
@@ -23,6 +23,7 @@ a {
 	position: absolute;
 	top: 0;
 	left: 0px;
+	z-index: 3;
 }
 
 #menuWrapper {
@@ -57,7 +58,7 @@ a {
 }
 
 #menuWrapper.visible {
-	transform: translateX(0px);	
+	transform: translateX(0px);
 }
 
 .planetSlider {
