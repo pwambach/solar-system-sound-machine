@@ -3,17 +3,21 @@
 var gulp = require('gulp'),
     useref = require('gulp-useref'),
     deploy = require('gulp-gh-pages'),
-    copy = require('gulp-copy');
+    copy = require('gulp-copy'),
+    gulpif = require('gulp-if'),
+    autoprefixer = require('gulp-autoprefixer');
+
+
 
 gulp.task('default', function () {
     var assets = useref.assets();
 
     return gulp.src('index.html')
         .pipe(assets)
+        .pipe(gulpif('*.css', autoprefixer()))
         .pipe(assets.restore())
         .pipe(useref())
         .pipe(gulp.dest('dist'));
-
 });
 
 gulp.task('copy', function(){
